@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 const store = configureStore({
   reducer: {
-    xxx: "aaa"
+    // xxx: "aaa"
   }
 })
 export default store
