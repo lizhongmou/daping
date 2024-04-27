@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react"
+// useScalePage.js
+import { useState, useEffect } from "react"
+import _ from "lodash"
 
-export default function App() {
+const useScalePage = (option) => {
   const [scaleRatio, setScaleRatio] = useState(1)
 
   useEffect(() => {
-    function handleResize() {
-      const targetX = 1920
-      const targetY = 1080
-      const targetRatio = 16 / 9
+    const resizeFunc = _.throttle(() => {
+      const targetX = option.targetX || 1920
+      const targetY = option.targetY || 1080
+      const targetRatio = option.targetRatio || 16 / 9
 
       const currentX = window.innerWidth
       const currentY = window.innerHeight
@@ -23,21 +25,18 @@ export default function App() {
       }
 
       setScaleRatio(newScaleRatio)
-    }
+    }, 100)
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
+    resizeFunc() // 初始调用一次
+
+    window.addEventListener("resize", resizeFunc)
 
     return () => {
-      window.removeEventListener("resize", handleResize)
+      window.removeEventListener("resize", resizeFunc)
     }
-  }, [])
+  }, [option])
 
-  return (
-    <div
-      style={{ transform: `scale(${scaleRatio})`, transformOrigin: "top left" }}
-    >
-      {/* 这里是你的应用内容 */}
-    </div>
-  )
+  return scaleRatio
 }
+
+export default useScalePage

@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client"
 import App from "./App"
 import { Provider } from "react-redux"
 import { HashRouter } from "react-router-dom"
+// eslint-disable-next-line no-unused-vars
 import store from "./store/index" //新添加，接收上面定义的store
 import "normalize.css"
 import "@/assets/css/index.less"

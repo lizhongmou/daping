@@ -1,23 +1,23 @@
-import React, { memo } from "react"
-import useScalePage from "@/hooks/useScalePage"
+import React, { memo, useState } from "react"
+import { BorderBox11 } from "@jiaminghi/data-view-react"
+
 import { ScreenWrapper } from "./style.js"
+import LineCharts from "@/components/LineCharts/index.jsx"
 
 const Screenview = memo(() => {
-  const options = {
-    targetX: 1920,
-    targetY: 1080,
-    targetRatio: 16 / 9
-  }
-  useScalePage(options)
+  // 初始化一个值
+  // eslint-disable-next-line no-unused-vars
+  const [Daping, useDaping] = useState("大屏自适应")
+
   return (
     <ScreenWrapper>
-      1234
-      <div className="one">1</div>
-      <div className="two">2</div>
-      <div className="three">3</div>
-      <div className="fire">4</div>
-      <div className="four">5</div>
-      <div className="six">6</div>
+      <BorderBox11 title={Daping}>
+        <div className="zhengti">
+          <div className="first">
+            <LineCharts></LineCharts>
+          </div>
+        </div>
+      </BorderBox11>
     </ScreenWrapper>
   )
 })
